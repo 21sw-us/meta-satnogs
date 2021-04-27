@@ -64,6 +64,6 @@ EXTRA_OECMAKE = " \
     "
 
 FILES_${PN} += "\
-    /usr/lib/python3.8/site-packages/satnogs \
-    /usr/share/gnuradio/grc/blocks \
+    ${PYTHON_SITEPACKAGES_DIR}/satnogs \
+    ${datadir}/gnuradio/grc/blocks \
 "

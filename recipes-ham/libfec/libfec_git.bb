@@ -20,17 +20,11 @@ S = "${WORKDIR}/git"
 inherit autotools
 
 FILES_${PN} += " \
-    /usr \
-    /usr/lib \
-    /usr/share \
-    /usr/include \
-    /usr/lib/libfec.so \
-    /usr/share/man \
-    /usr/share/man/man3 \
-    /usr/share/man/man3/dsp.3 \
-    /usr/share/man/man3/simd-viterbi.3 \
-    /usr/share/man/man3/rs.3 \
-    /usr/include/fec.h \
+    ${libdir}/libfec.so \
+    ${datadir}/man/man3/dsp.3 \
+    ${datadir}/man/man3/simd-viterbi.3 \
+    ${datadir}/rs.3 \
+    ${includedir}/fec.h \
 "
 
 do_compile_append() {

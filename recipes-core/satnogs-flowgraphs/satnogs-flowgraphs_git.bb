@@ -16,19 +16,19 @@ inherit cmake python3native
 
 # for pre-compiled native binary libraries used at build time
 PYTHONPATH = "\
-${STAGING_DIR_NATIVE}/usr/lib/python3.8/site-packages:\
-${STAGING_DIR_NATIVE}/usr/lib/python3.8/site-packages/gnuradio/grc:\
-${STAGING_DIR_NATIVE}/usr/lib/python3.8/site-packages/satnogs:\
-${STAGING_DIR_NATIVE}/usr/lib/python3.8/site-packages/gnuradio/gr:\
+${STAGING_DIR_NATIVE}${PYTHON_SITEPACKAGES_DIR}:\
+${STAGING_DIR_NATIVE}${PYTHON_SITEPACKAGES_DIR}/gnuradio/grc:\
+${STAGING_DIR_NATIVE}${PYTHON_SITEPACKAGES_DIR}/satnogs:\
+${STAGING_DIR_NATIVE}${PYTHON_SITEPACKAGES_DIR}/gnuradio/gr:\
 "
 
 LD_LIBRARY_PATH = "\
 ${STAGING_DIR_NATIVE}/usr/lib:\
-${STAGING_DIR_NATIVE}/usr/lib/python3.8/site-packages/satnogs:\
-${STAGING_DIR_NATIVE}/usr/lib/python3.8/site-packages/soapy:\
+${STAGING_DIR_NATIVE}${PYTHON_SITEPACKAGES_DIR}/satnogs:\
+${STAGING_DIR_NATIVE}${PYTHON_SITEPACKAGES_DIR}/soapy:\
 "
 
-GRC_BLOCKS_PATH = "${STAGING_DIR_NATIVE}/usr/share/gnuradio/grc/blocks"
+GRC_BLOCKS_PATH = "${STAGING_DATADIR_NATIVE}/gnuradio/grc/blocks"
 
 # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
 EXTRA_OECMAKE = " \

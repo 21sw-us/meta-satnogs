@@ -42,7 +42,7 @@ EXTRA_OECMAKE = " \
 	"
 
 FILES_${PN} += "\
-  /usr/share/gnuradio/grc/blocks \
+  ${datadir}/gnuradio/grc/blocks \
   ${PYTHON_SITEPACKAGES_DIR}/soapy \
 "
 

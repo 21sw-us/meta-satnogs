@@ -33,6 +33,6 @@ DISABLED_OEMAKE = " \
     "
 
 FILES_${PN} += "\
-    /usr/lib/python3.8/site-packages/SoapySDR.py \
-    /usr/lib/python3.8/site-packages/_SoapySDR.so \
+    ${PYTHON_SITEPACKAGES_DIR}/SoapySDR.py \
+    ${PYTHON_SITEPACKAGES_DIR}/_SoapySDR.so \
     "
