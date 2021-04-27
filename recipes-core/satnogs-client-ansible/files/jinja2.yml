@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: show templating results
+      ansible.builtin.template:
+        src: '{{ input_file }}'
+        dest: '{{ output_file }}'

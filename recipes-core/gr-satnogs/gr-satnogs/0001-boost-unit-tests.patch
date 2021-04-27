@@ -1,0 +1,73 @@
+diff --git a/lib/CMakeLists.txt b/lib/CMakeLists.txt
+index 2b20275..62ebb98 100644
+--- a/lib/CMakeLists.txt
++++ b/lib/CMakeLists.txt
+@@ -151,8 +151,8 @@ if(NOT test_satnogs_sources)
+     return()
+ endif(NOT test_satnogs_sources)
+ 
+-foreach(qa_file ${test_satnogs_sources})
+-    GR_ADD_CPP_TEST("satnogs_${qa_file}"
+-        ${CMAKE_CURRENT_SOURCE_DIR}/${qa_file}
+-    )
+-endforeach(qa_file)
++#foreach(qa_file ${test_satnogs_sources})
++#    GR_ADD_CPP_TEST("satnogs_${qa_file}"
++#        ${CMAKE_CURRENT_SOURCE_DIR}/${qa_file}
++#    )
++#endforeach(qa_file)
+diff --git a/lib/libfec/CMakeLists.txt b/lib/libfec/CMakeLists.txt
+index 37b33e8..821876b 100644
+--- a/lib/libfec/CMakeLists.txt
++++ b/lib/libfec/CMakeLists.txt
+@@ -57,8 +57,8 @@ endif()
+ ########################################################################
+ 
+ # libm
+-find_library(M_LIB m REQUIRED)
+-
++#find_library(M_LIB m REQUIRED)
++set(M_LIB "-lm")
+ 
+ ########################################################################
+ # config.h
+@@ -208,7 +208,7 @@ target_include_directories(gen_ccsds
+ 
+ add_custom_command(
+     OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/ccsds_tab.c
+-    COMMAND  ${CMAKE_CURRENT_BINARY_DIR}/gen_ccsds > ccsds_tab.c
++    COMMAND  gen_ccsds > ccsds_tab.c
+     DEPENDS  gen_ccsds
+ )
+ 
+@@ -224,7 +224,7 @@ target_include_directories(gen_ccsds_tal
+ 
+ add_custom_command(
+     OUTPUT   ${CMAKE_CURRENT_BINARY_DIR}/ccsds_tal.c
+-    COMMAND  ${CMAKE_CURRENT_BINARY_DIR}/gen_ccsds_tal > ccsds_tal.c
++    COMMAND  gen_ccsds_tal > ccsds_tal.c
+     DEPENDS  gen_ccsds_tal
+ )
+ 
+diff --git a/lib/libfec/makefile.in b/lib/libfec/makefile.in
+index cc116ab..7008771 100644
+--- a/lib/libfec/makefile.in
++++ b/lib/libfec/makefile.in
+@@ -144,7 +144,7 @@ init_rs_int.o: init_rs_int.c int.h rs-common.h
+ ccsds_tab.o: ccsds_tab.c
+ 
+ ccsds_tab.c: gen_ccsds
+-	./gen_ccsds > ccsds_tab.c
++	gen_ccsds > ccsds_tab.c
+ 
+ gen_ccsds: gen_ccsds.o init_rs_char.o
+ 	gcc $(CFLAGS) -o $@ $^
+@@ -155,7 +155,7 @@ gen_ccsds.o: gen_ccsds.c
+ ccsds_tal.o: ccsds_tal.c
+ 
+ ccsds_tal.c: gen_ccsds_tal
+-	./gen_ccsds_tal > ccsds_tal.c
++	gen_ccsds_tal > ccsds_tal.c
+ 
+ exercise_char.o: exercise.c
+ 	gcc $(CFLAGS) -c -o $@ $<

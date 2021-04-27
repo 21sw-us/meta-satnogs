@@ -1,0 +1,2 @@
+ROT_OPTS=""
+RIG_OPTS="-T 127.0.0.1 -m 1"

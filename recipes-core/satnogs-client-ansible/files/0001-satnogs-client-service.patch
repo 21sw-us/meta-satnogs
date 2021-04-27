@@ -1,0 +1,14 @@
+diff --git a/roles/satnogs-client/templates/etc/systemd/system/satnogs-client.service.j2 b/roles/satnogs-client/templates/etc/systemd/system/satnogs-client.service.j2
+index 646671c..8bc2d07 100644
+--- a/roles/satnogs-client/templates/etc/systemd/system/satnogs-client.service.j2
++++ b/roles/satnogs-client/templates/etc/systemd/system/satnogs-client.service.j2
+@@ -2,6 +2,9 @@
+ Description=SatNOGS client
+ 
+ [Service]
++RuntimeDirectory={{ satnogs_client_user }}
++ExecStartPre=install -d -o {{ satnogs_client_user }} /data/satnogs /data/satnogs/data /data/satnogs/data/incomplete
++PermissionsStartOnly=true
+ EnvironmentFile=-/etc/default/satnogs-client
+ ExecStart=/var/lib/{{ satnogs_client_user }}/bin/satnogs-client
+ Restart=on-failure

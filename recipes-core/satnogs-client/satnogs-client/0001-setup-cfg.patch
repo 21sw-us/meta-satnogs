@@ -1,0 +1,33 @@
+diff --git a/setup.cfg b/setup.cfg
+index 72bbbba..f907eb5 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -17,18 +17,17 @@ description = SatNOGS Client
+ 
+ [options]
+ install_requires =
+-    APScheduler~=3.6.0
+-    python-dotenv~=0.14.0
+-    requests~=2.24.0
+-    validators~=0.18.0
+-    python-dateutil~=2.8.0
+-    ephem~=3.7.7.0
++    APScheduler>=3.6.0
++    python-dotenv>=0.14.0
++    requests>=2.24.0
++    validators>=0.18.0
++    python-dateutil>=2.8.0
++    ephem>=3.7.7.0
+     pytz
+-    numpy~=1.19.0
+-    h5py~=2.10.0
+-    matplotlib~=3.3.0
+-    gps~=3.19
+-    sentry-sdk~=0.18.0
++    numpy>=1.19.0
++    h5py>=2.10.0
++    matplotlib>=3.3.0
++    sentry-sdk>=0.18.0
+ packages = find:
+ 
+ [options.entry_points]

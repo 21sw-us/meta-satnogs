@@ -1,0 +1,65 @@
+diff --git a/configure b/configure
+index bc1e224..67255ff 100755
+--- a/configure
++++ b/configure
+@@ -3835,8 +3835,8 @@ darwin*)
+ 	REBIND=""
+ 	;;
+ *)
+-	SH_LIB=libfec.so
+-	REBIND=ldconfig
++	SH_LIB=libfec.so.2
++	REBIND=
+ 	;;
+ esac
+ if test "$target" != "$build"
+diff --git a/configure.in b/configure.in
+index 651d888..4cfd97a 100644
+--- a/configure.in
++++ b/configure.in
+@@ -83,8 +83,8 @@ darwin*)
+ 	REBIND=""
+ 	;;
+ *)
+-	SH_LIB=libfec.so
+-	REBIND=ldconfig
++	SH_LIB=libfec.so.2
++	REBIND=
+ 	;;
+ esac
+ if test "$target" != "$build"
+diff --git a/makefile.in b/makefile.in
+index a8e424b..3155fc7 100644
+--- a/makefile.in
++++ b/makefile.in
+@@ -45,14 +45,13 @@ test: vtest27 vtest29 vtest39 vtest615 rstest dtest sumsq_test peaktest
+ 	./vtest615
+ 
+ install: all
+-	mkdir -p @libdir@ 
+-	install -m 644 -p $(SHARED_LIB) libfec.a @libdir@
+-#	(cd @libdir@;ln -f -s $(SHARED_LIB) libfec.so)
+-	@REBIND@
+-	mkdir -p @includedir@
+-	install -m 644 -p fec.h @includedir@
+-	mkdir -m 0755 -p @mandir@/man3
+-	install -m 644 -p simd-viterbi.3 rs.3 dsp.3 @mandir@/man3
++	mkdir -p $(DESTDIR)@libdir@
++	install -m 644 -p $(SHARED_LIB) $(DESTDIR)@libdir@
++	ln -rfs $(DESTDIR)@libdir@/$(SHARED_LIB) $(DESTDIR)@libdir@/libfec.so
++	mkdir -p $(DESTDIR)@includedir@
++	install -m 644 -p fec.h $(DESTDIR)@includedir@
++	mkdir -m 0755 -p $(DESTDIR)@mandir@/man3
++	install -m 644 -p simd-viterbi.3 rs.3 dsp.3 $(DESTDIR)@mandir@/man3
+ 
+ peaktest: peaktest.o libfec.a
+ 	gcc -g -o $@ $^
+@@ -103,7 +102,7 @@ libfec.dylib: $(LIBS)
+ 	$(CC) -dynamiclib -install_name $@ -o $@ $^
+ 
+ # for Linux et al
+-libfec.so: $(LIBS)
++$(SHARED_LIB): $(LIBS)
+ 	$(CC) $(LDFLAGS) -shared -Xlinker -soname=$@ -o $@ -Wl,-whole-archive $^ -Wl,-no-whole-archive -lc
+ 
+ dotprod.o: dotprod.c fec.h
