@@ -18,5 +18,6 @@ RDEPENDS_${PN} += "\
     satnogs-client \
     satnogs-unwinder \
     satnogs-flowgraphs \
+    satnogs-decoders \
     soapysdr \
     "

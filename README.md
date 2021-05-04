@@ -19,6 +19,12 @@ This Yocto Project layer automates the reception of signals from satellites (cub
 * branch: gatesgarth
 * revision: HEAD
 
+### Native docker
+
+The satnogs-decoders package requires docker to build.  The meta-virtualization layer doesn't provide docker-ce-native due too many recursive dependencies.
+This recipe depends on a HOSTTOOLS docker binary being available on the build host instead.
+This also requires the build user to be in the "docker" group and may require a reboot after the account is added.
+
 ## Maintainer
 
 Bryan Schneiders
